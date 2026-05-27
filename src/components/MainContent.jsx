@@ -1,8 +1,24 @@
+import PersonalInfoForm from "../forms/PersonalInfoForm";
+
 function MainContent({ activeSection }) {
+  function renderSection() {
+    switch (activeSection) {
+      case "personal":
+        return <PersonalInfoForm />;
+      default:
+        return (
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <p className="text-gray-400 text-center text-sm py-10">
+              🏗️ This section is coming in the next steps!
+            </p>
+          </div>
+        );
+    }
+  }
+
   return (
     <main className="flex-1 p-8 bg-gray-50">
-
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-5xl mx-auto">
 
         {/* Page Header */}
         <div className="mb-8">
@@ -14,15 +30,10 @@ function MainContent({ activeSection }) {
           </p>
         </div>
 
-        {/* Placeholder Card */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-          <p className="text-gray-400 text-center text-sm py-10">
-            🏗️ This section is coming soon in the next steps!
-          </p>
-        </div>
+        {/* Active Section */}
+        {renderSection()}
 
       </div>
-
     </main>
   );
 }
