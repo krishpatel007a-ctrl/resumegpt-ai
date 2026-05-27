@@ -1,0 +1,30 @@
+function MainContent({ activeSection }) {
+  return (
+    <main className="flex-1 p-8 bg-gray-50">
+
+      <div className="max-w-3xl mx-auto">
+
+        {/* Page Header */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold text-gray-800 capitalize">
+            {activeSection.replace("-", " ")} ✏️
+          </h2>
+          <p className="text-gray-400 mt-1 text-sm">
+            Fill in your details below. AI will help you write better content!
+          </p>
+        </div>
+
+        {/* Placeholder Card */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+          <p className="text-gray-400 text-center text-sm py-10">
+            🏗️ This section is coming soon in the next steps!
+          </p>
+        </div>
+
+      </div>
+
+    </main>
+  );
+}
+
+export default MainContent;
