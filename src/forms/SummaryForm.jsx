@@ -2,26 +2,24 @@ import { useState } from "react";
 import { generateWithAI } from "../utils/aiHelper";
 
 function SummaryForm() {
-  const [summary, setSummary]     = useState("");
-  const [jobTitle, setJobTitle]   = useState("");
+  const [summary, setSummary]       = useState("");
+  const [jobTitle, setJobTitle]     = useState("");
   const [experience, setExperience] = useState("2");
-  const [skills, setSkills]       = useState("");
-  const [loading, setLoading]     = useState(false);
-  const [error, setError]         = useState("");
+  const [skills, setSkills]         = useState("");
+  const [loading, setLoading]       = useState(false);
+  const [error, setError]           = useState("");
 
   async function handleGenerate() {
     if (!jobTitle.trim()) {
       setError("Please enter your job title first!");
       return;
     }
-
     setLoading(true);
     setError("");
 
     const prompt = `Write a professional resume summary for a ${jobTitle} 
       with ${experience} years of experience. 
       Their key skills include: ${skills || "not specified"}.
-      
       Requirements:
       - 3-4 sentences maximum
       - Start with a strong action or description
@@ -29,7 +27,6 @@ function SummaryForm() {
       - Sound confident and professional
       - Do NOT use "I" — write in third person
       - No fluff, every word must add value
-      
       Return ONLY the summary text, nothing else.`;
 
     try {
@@ -63,8 +60,8 @@ function SummaryForm() {
           Let AI write a powerful summary for you in seconds!
         </p>
 
-        {/* Job Title */}
         <div className="space-y-4">
+
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-gray-600">
               Your Job Title *
@@ -80,7 +77,6 @@ function SummaryForm() {
             />
           </div>
 
-          {/* Years of Experience */}
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-gray-600">
               Years of Experience
@@ -102,7 +98,6 @@ function SummaryForm() {
             </select>
           </div>
 
-          {/* Key Skills */}
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-gray-600">
               Key Skills (optional)
@@ -117,6 +112,7 @@ function SummaryForm() {
                          placeholder-gray-300 transition"
             />
           </div>
+
         </div>
 
         {/* Error Message */}
@@ -147,7 +143,7 @@ function SummaryForm() {
           <div className="flex-1 border-t border-gray-100" />
         </div>
 
-        {/* Manual textarea */}
+        {/* Manual Textarea */}
         <div className="flex flex-col gap-1">
           <label className="text-sm font-semibold text-gray-600">
             Your Summary
@@ -177,8 +173,8 @@ function SummaryForm() {
       {/* RIGHT — Preview + Tips */}
       <div className="space-y-4">
 
-        {/* Preview */}
-        <div className="bg-gradient-to-br from-indigo-600 to-blue-500 
+        {/* Preview Card */}
+        <div className="bg-linear-to-br from-indigo-600 to-blue-500 
                         rounded-2xl p-6 text-white shadow-lg">
           <p className="text-xs font-semibold uppercase tracking-widest 
                         text-indigo-200 mb-4">
@@ -190,15 +186,13 @@ function SummaryForm() {
               <div className="w-5 h-5 border-2 border-white border-t-transparent 
                               rounded-full animate-spin" />
               <p className="text-indigo-200 text-sm">
-                AI is crafting your summary...
+                Gemini AI is crafting your summary...
               </p>
             </div>
           )}
 
           {!loading && summary && (
-            <p className="text-white leading-relaxed text-sm">
-              {summary}
-            </p>
+            <p className="text-white leading-relaxed text-sm">{summary}</p>
           )}
 
           {!loading && !summary && (
@@ -222,17 +216,18 @@ function SummaryForm() {
           </ul>
         </div>
 
-        {/* AI Badge */}
+        {/* Gemini Badge */}
         <div className="bg-indigo-50 border border-indigo-200 
                         rounded-2xl p-5 flex items-start gap-3">
           <span className="text-2xl">🤖</span>
           <div>
             <p className="text-sm font-semibold text-indigo-700">
-              Powered by Claude AI
+              Powered by Gemini AI
             </p>
             <p className="text-xs text-indigo-500 mt-1">
-              Claude understands context and writes human-quality 
-              professional content tailored to your experience level.
+              Google's Gemini understands context and writes 
+              human-quality professional content tailored to your 
+              experience level.
             </p>
           </div>
         </div>
