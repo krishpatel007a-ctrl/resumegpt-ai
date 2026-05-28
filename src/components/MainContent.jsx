@@ -1,16 +1,17 @@
 import PersonalInfoForm   from "../forms/PersonalInfoForm";
 import SummaryForm        from "../forms/SummaryForm";
 import WorkExperienceForm from "../forms/WorkExperienceForm";
+import EducationForm      from "../forms/EducationForm";
+import SkillsForm         from "../forms/SkillsForm";
 
 function MainContent({ activeSection }) {
   function renderSection() {
     switch (activeSection) {
-      case "personal":
-        return <PersonalInfoForm />;
-      case "summary":
-        return <SummaryForm />;
-      case "experience":
-        return <WorkExperienceForm />;
+      case "personal":    return <PersonalInfoForm />;
+      case "summary":     return <SummaryForm />;
+      case "experience":  return <WorkExperienceForm />;
+      case "education":   return <EducationForm />;
+      case "skills":      return <SkillsForm />;
       default:
         return (
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
