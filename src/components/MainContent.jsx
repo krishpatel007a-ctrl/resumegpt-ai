@@ -1,5 +1,6 @@
-import PersonalInfoForm from "../forms/PersonalInfoForm";
-import SummaryForm from "../forms/SummaryForm";
+import PersonalInfoForm   from "../forms/PersonalInfoForm";
+import SummaryForm        from "../forms/SummaryForm";
+import WorkExperienceForm from "../forms/WorkExperienceForm";
 
 function MainContent({ activeSection }) {
   function renderSection() {
@@ -8,6 +9,8 @@ function MainContent({ activeSection }) {
         return <PersonalInfoForm />;
       case "summary":
         return <SummaryForm />;
+      case "experience":
+        return <WorkExperienceForm />;
       default:
         return (
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
@@ -22,7 +25,6 @@ function MainContent({ activeSection }) {
   return (
     <main className="flex-1 p-8 bg-gray-50">
       <div className="max-w-5xl mx-auto">
-
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-800 capitalize">
             {activeSection.replace("-", " ")} ✏️
@@ -31,9 +33,7 @@ function MainContent({ activeSection }) {
             Fill in your details below. AI will help you write better content!
           </p>
         </div>
-
         {renderSection()}
-
       </div>
     </main>
   );
