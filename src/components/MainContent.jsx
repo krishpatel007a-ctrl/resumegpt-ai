@@ -3,20 +3,22 @@ import SummaryForm        from "../forms/SummaryForm";
 import WorkExperienceForm from "../forms/WorkExperienceForm";
 import EducationForm      from "../forms/EducationForm";
 import SkillsForm         from "../forms/SkillsForm";
+import ProjectsForm       from "../forms/ProjectsForm";
 
 function MainContent({ activeSection }) {
   function renderSection() {
     switch (activeSection) {
-      case "personal":    return <PersonalInfoForm />;
-      case "summary":     return <SummaryForm />;
-      case "experience":  return <WorkExperienceForm />;
-      case "education":   return <EducationForm />;
-      case "skills":      return <SkillsForm />;
+      case "personal":   return <PersonalInfoForm />;
+      case "summary":    return <SummaryForm />;
+      case "experience": return <WorkExperienceForm />;
+      case "education":  return <EducationForm />;
+      case "skills":     return <SkillsForm />;
+      case "projects":   return <ProjectsForm />;
       default:
         return (
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
             <p className="text-gray-400 text-center text-sm py-10">
-              🏗️ This section is coming in the next steps!
+              ✅ All sections complete!
             </p>
           </div>
         );
