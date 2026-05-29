@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useResume } from "../context/ResumeContext";
 
 const emptyEdu = {
   id: Date.now(),
@@ -160,8 +161,8 @@ function EduCard({ edu, onUpdate, onDelete }) {
     </div>
   );
 }
-
 function EducationForm() {
+  const { updateSection } = useResume();
   const [entries, setEntries] = useState([{ ...emptyEdu }]);
 
   function handleAdd() {
@@ -181,6 +182,7 @@ function EducationForm() {
   }
 
   function handleSave() {
+    updateSection("education", entries);
     alert(`✅ ${entries.length} education ${entries.length === 1 ? "entry" : "entries"} saved!`);
   }
 

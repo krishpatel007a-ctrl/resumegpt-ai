@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { generateWithAI } from "../utils/aiHelper";
+import { useResume } from "../context/ResumeContext";
 
 function SummaryForm() {
+  const { updateSection } = useResume();
   const [summary, setSummary]       = useState("");
   const [jobTitle, setJobTitle]     = useState("");
   const [experience, setExperience] = useState("2");
@@ -44,7 +46,8 @@ function SummaryForm() {
       setError("Generate or write a summary first!");
       return;
     }
-    alert("✅ Summary saved!");
+    updateSection("summary", { text: summary });
+    alert("✅ Summary saved to resume!");
   }
 
   return (

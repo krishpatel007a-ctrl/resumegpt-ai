@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useResume } from "../context/ResumeContext";
 const defaultData = {
   fullName: "",
   jobTitle: "",
@@ -84,6 +84,7 @@ function PreviewCard({ data }) {
 
 // Main Form Component
 function PersonalInfoForm() {
+  const { updateSection } = useResume();
   const [formData, setFormData] = useState(defaultData);
 
   function handleChange(e) {
@@ -92,7 +93,8 @@ function PersonalInfoForm() {
   }
 
   function handleSave() {
-    alert("✅ Personal info saved! (We'll connect this to storage in a later step)");
+    updateSection("personal", formData);
+    alert("✅ Personal info saved to resume!");
   }
 
   return (

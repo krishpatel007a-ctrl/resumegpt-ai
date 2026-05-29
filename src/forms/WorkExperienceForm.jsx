@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { generateWithAI } from "../utils/aiHelper";
+import { useResume } from "../context/ResumeContext";
 
 const emptyJob = {
   id: Date.now(),
@@ -189,8 +190,8 @@ function JobCard({ job, onUpdate, onDelete }) {
     </div>
   );
 }
-
 function WorkExperienceForm() {
+  const { updateSection } = useResume();
   const [jobs, setJobs] = useState([{ ...emptyJob }]);
 
   function handleAddJob() {
@@ -215,6 +216,7 @@ function WorkExperienceForm() {
   }
 
   function handleSave() {
+    updateSection("workExperience", jobs);
     alert(`✅ ${jobs.length} work experience entry saved!`);
   }
 

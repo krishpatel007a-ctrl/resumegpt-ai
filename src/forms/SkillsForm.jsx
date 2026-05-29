@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { generateWithAI } from "../utils/aiHelper";
+import { useResume } from "../context/ResumeContext";
 
 const CATEGORIES = [
   "Technical Skills",
@@ -15,6 +16,7 @@ const CATEGORIES = [
 ];
 
 function SkillsForm() {
+  const { updateSection } = useResume();
   const [skills, setSkills]       = useState([]);
   const [input, setInput]         = useState("");
   const [category, setCategory]   = useState("Technical Skills");
@@ -94,6 +96,7 @@ function SkillsForm() {
       setError("Add at least one skill first!");
       return;
     }
+    updateSection("skills", skills);
     alert(`✅ ${skills.length} skills saved!`);
   }
 

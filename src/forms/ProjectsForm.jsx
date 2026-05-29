@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { generateWithAI } from "../utils/aiHelper";
+import { useResume } from "../context/ResumeContext";
 
 const emptyProject = {
   id: Date.now(),
@@ -173,8 +174,8 @@ function ProjectCard({ project, onUpdate, onDelete }) {
     </div>
   );
 }
-
 function ProjectsForm() {
+  const { updateSection } = useResume();
   const [projects, setProjects] = useState([{ ...emptyProject }]);
 
   function handleAdd() {
@@ -199,6 +200,7 @@ function ProjectsForm() {
   }
 
   function handleSave() {
+    updateSection("projects", projects);
     alert(`✅ ${projects.length} project(s) saved!`);
   }
 
