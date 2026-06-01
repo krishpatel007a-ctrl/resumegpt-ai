@@ -1,20 +1,28 @@
 import { useState } from "react";
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
+import Navbar      from "./components/Navbar";
+import Sidebar     from "./components/Sidebar";
 import MainContent from "./components/MainContent";
 import PreviewPage from "./components/PreviewPage";
+import ATSScore    from "./components/ATSScore";
 
 function App() {
   const [activeSection, setActiveSection] = useState("personal");
-  const [showPreview, setShowPreview]     = useState(false);
+  const [page, setPage]                   = useState("editor");
 
-  if (showPreview) {
-    return <PreviewPage onBack={() => setShowPreview(false)} />;
+  if (page === "preview") {
+    return <PreviewPage onBack={() => setPage("editor")} />;
+  }
+
+  if (page === "ats") {
+    return <ATSScore onBack={() => setPage("editor")} />;
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar onPreview={() => setShowPreview(true)} />
+      <Navbar
+        onPreview={() => setPage("preview")}
+        onATS={() => setPage("ats")}
+      />
       <div className="flex">
         <Sidebar
           activeSection={activeSection}
