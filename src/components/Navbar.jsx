@@ -1,4 +1,8 @@
+import { useAuth } from "../context/AuthContext";
+
 function Navbar({ onPreview, onATS, onJobMatch }) {
+  const { user, signOut } = useAuth();
+
   return (
     <nav className="bg-white border-b border-gray-200 px-6 py-4 
                     flex items-center justify-between shadow-sm">
@@ -16,6 +20,7 @@ function Navbar({ onPreview, onATS, onJobMatch }) {
 
       {/* Right Side */}
       <div className="flex items-center gap-3">
+
         <button
           onClick={onJobMatch}
           className="border border-green-400 text-green-600 px-4 py-2 
@@ -24,6 +29,7 @@ function Navbar({ onPreview, onATS, onJobMatch }) {
         >
           🎯 Job Match
         </button>
+
         <button
           onClick={onATS}
           className="border border-amber-400 text-amber-600 px-4 py-2 
@@ -32,6 +38,7 @@ function Navbar({ onPreview, onATS, onJobMatch }) {
         >
           📊 ATS Score
         </button>
+
         <button
           onClick={onPreview}
           className="border border-indigo-600 text-indigo-600 px-4 py-2 
@@ -40,14 +47,30 @@ function Navbar({ onPreview, onATS, onJobMatch }) {
         >
           👁️ Preview
         </button>
-        <button
-          className="bg-indigo-600 text-white px-4 py-2 rounded-xl 
-                     font-semibold hover:bg-indigo-700 transition text-sm"
-        >
-          + New Resume
-        </button>
-      </div>
 
+        {/* User Info + Logout */}
+        {user && (
+          <div className="flex items-center gap-3 ml-2 pl-3 
+                          border-l border-gray-200">
+            <div className="text-right">
+              <p className="text-xs font-semibold text-gray-700 
+                             max-w-[140px] truncate">
+                {user.email}
+              </p>
+              <p className="text-xs text-gray-400">Logged in</p>
+            </div>
+            <button
+              onClick={signOut}
+              className="bg-gray-100 text-gray-600 px-3 py-2 
+                         rounded-xl text-xs font-semibold 
+                         hover:bg-red-50 hover:text-red-600 transition"
+            >
+              Logout
+            </button>
+          </div>
+        )}
+
+      </div>
     </nav>
   );
 }
