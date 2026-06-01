@@ -1,4 +1,4 @@
-function Navbar({ onPreview, onATS }) {
+function Navbar({ onPreview, onATS, onJobMatch }) {
   return (
     <nav className="bg-white border-b border-gray-200 px-6 py-4 
                     flex items-center justify-between shadow-sm">
@@ -16,11 +16,14 @@ function Navbar({ onPreview, onATS }) {
 
       {/* Right Side */}
       <div className="flex items-center gap-3">
-        <a href="#"
-          className="text-gray-500 hover:text-indigo-600 font-medium 
-                     text-sm transition">
-          Home
-        </a>
+        <button
+          onClick={onJobMatch}
+          className="border border-green-400 text-green-600 px-4 py-2 
+                     rounded-xl font-semibold text-sm hover:bg-green-50 
+                     transition"
+        >
+          🎯 Job Match
+        </button>
         <button
           onClick={onATS}
           className="border border-amber-400 text-amber-600 px-4 py-2 
