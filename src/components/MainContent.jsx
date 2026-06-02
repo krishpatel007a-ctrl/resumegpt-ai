@@ -26,7 +26,7 @@ function MainContent({ activeSection }) {
   }
 
   return (
-    <main className="flex-1 p-8 bg-gray-50">
+    <main className="flex-1 p-8" style={{ background: "transparent" }}>
       <div className="max-w-5xl mx-auto">
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-800 capitalize">
