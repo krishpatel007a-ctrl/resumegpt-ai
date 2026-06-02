@@ -5,6 +5,15 @@ import EducationForm      from "../forms/EducationForm";
 import SkillsForm         from "../forms/SkillsForm";
 import ProjectsForm       from "../forms/ProjectsForm";
 
+const sectionMeta = {
+  personal:   { icon: "👤", title: "Personal Info",    desc: "Your basic contact details" },
+  summary:    { icon: "📝", title: "Summary",          desc: "Your professional overview" },
+  experience: { icon: "💼", title: "Work Experience",  desc: "Your jobs and roles" },
+  education:  { icon: "🎓", title: "Education",        desc: "Your degrees and courses" },
+  skills:     { icon: "🛠️", title: "Skills",           desc: "Your tech stack and abilities" },
+  projects:   { icon: "🚀", title: "Projects",         desc: "Things you've built" },
+};
+
 function MainContent({ activeSection }) {
   function renderSection() {
     switch (activeSection) {
@@ -16,8 +25,11 @@ function MainContent({ activeSection }) {
       case "projects":   return <ProjectsForm />;
       default:
         return (
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-            <p className="text-gray-400 text-center text-sm py-10">
+          <div className="rounded-2xl p-10 text-center" style={{
+            background: "rgba(255,255,255,0.03)",
+            border: "1px solid rgba(255,255,255,0.07)",
+          }}>
+            <p style={{ color: "rgba(255,255,255,0.2)" }}>
               ✅ All sections complete!
             </p>
           </div>
@@ -25,18 +37,38 @@ function MainContent({ activeSection }) {
     }
   }
 
+  const meta = sectionMeta[activeSection] || {};
+
   return (
-    <main className="flex-1 p-8" style={{ background: "transparent" }}>
+    <main className="flex-1 p-6 overflow-y-auto"
+      style={{ minHeight: "calc(100vh - 57px)" }}>
       <div className="max-w-5xl mx-auto">
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 capitalize">
-            {activeSection.replace("-", " ")} ✏️
-          </h2>
-          <p className="text-gray-400 mt-1 text-sm">
-            Fill in your details below. AI will help you write better content!
-          </p>
+
+        {/* Section Header */}
+        <div className="mb-6 flex items-center gap-4">
+          <div className="w-12 h-12 rounded-2xl flex items-center 
+                          justify-center text-2xl flex-shrink-0"
+            style={{
+              background: "linear-gradient(135deg, rgba(99,102,241,0.3), rgba(167,139,250,0.2))",
+              border: "1px solid rgba(99,102,241,0.3)",
+            }}>
+            {meta.icon}
+          </div>
+          <div>
+            <h2 className="text-xl font-bold text-white">
+              {meta.title}
+            </h2>
+            <p className="text-xs mt-0.5"
+              style={{ color: "rgba(255,255,255,0.3)" }}>
+              {meta.desc} — AI will help you write better content!
+            </p>
+          </div>
         </div>
+
+        <hr className="section-divider mb-6" />
+
         {renderSection()}
+
       </div>
     </main>
   );
