@@ -44,7 +44,7 @@ export function AuthProvider({ children }) {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "resumegpt-ai.vercel.app",
+        redirectTo: " http://localhost:5173/",
       },
     });
 
